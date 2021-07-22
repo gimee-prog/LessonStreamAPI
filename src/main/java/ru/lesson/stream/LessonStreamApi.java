@@ -86,7 +86,7 @@ public class LessonStreamApi {
             throw new IllegalArgumentException(Integer.toString(number));
         }
 
-        return employees.stream().skip(number).limit(size).collect(Collectors.toList());
+        return employees.stream().skip(number*size-size).limit(size).collect(Collectors.toList());
     }
 
     /**
@@ -153,8 +153,8 @@ public class LessonStreamApi {
      * @return словарь с списком имен {@link Employee#getName()} через ", " эффективных и неэффективных сотрудников
      */
     public Map<Boolean, String> task10(List<Employee> employees) {
-        return null; // employees.stream()
-               // .collect(Collectors.partitioningBy(employee -> employee.getRating() > 50, Collectors.joining(",")));
+        return  employees.stream()
+                .collect(Collectors.partitioningBy(employee -> employee.getRating() > 50, Collectors.joining(","))));
     }
 
 }
